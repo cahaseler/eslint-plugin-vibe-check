@@ -7,5 +7,7 @@ coverage
 .vscode
 tests
 examples
-docs
 .gitignore
+.github
+tmp.js
+*.tgz

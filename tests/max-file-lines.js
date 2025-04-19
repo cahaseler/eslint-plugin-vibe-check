@@ -10,35 +10,35 @@ ruleTester.run('max-file-lines', rule, {
       options: [{ max: 5 }],
     },
     {
-      code: Array(300).fill('var a = 1;').join('\n'),
-      options: [{ max: 300 }],
+      code: Array(400).fill('var a = 1;').join('\n'),
+      options: [{ max: 400 }],
     },
     {
-      code: Array(299).fill('var a = 1;').join('\n'),
+      code: Array(399).fill('var a = 1;').join('\n'),
     },
   ],
   invalid: [
     {
-      code: Array(301).fill('var a = 1;').join('\n'),
-      options: [{ max: 300 }],
+      code: Array(401).fill('var a = 1;').join('\n'),
+      options: [{ max: 400 }],
       errors: [
         {
           messageId: 'tooManyLines',
           data: {
-            count: 301,
-            max: 300,
+            count: 401,
+            max: 400,
           },
         },
       ],
     },
     {
-      code: Array(301).fill('var a = 1;').join('\n'),
+      code: Array(401).fill('var a = 1;').join('\n'),
       errors: [
         {
           messageId: 'tooManyLines',
           data: {
-            count: 301,
-            max: 300,
+            count: 401,
+            max: 400,
           },
         },
       ],

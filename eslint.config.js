@@ -16,8 +16,47 @@ const rules = {
 
 /** @type {import('eslint').FlatConfig[]} */
 export default [
+  // JavaScript files
   {
-    files: ['**/*.js'],
+    files: ['**/*.js', '**/*.jsx'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true
+        }
+      }
+    },
+    plugins: {
+      'vibe-check': {
+        rules
+      }
+    },
+    rules: {
+      'vibe-check/max-file-lines': 'warn',
+      'vibe-check/no-placeholder-comments': 'warn',
+      'vibe-check/no-hardcoded-credentials': 'warn',
+      'vibe-check/no-changelog-comments': 'warn',
+    }
+  },
+  // TypeScript files 
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      parser: {
+        name: 'espree',
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true
+        }
+      }
+    },
     plugins: {
       'vibe-check': {
         rules

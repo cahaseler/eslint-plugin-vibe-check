@@ -111,4 +111,32 @@ Detects hardcoded API keys, tokens, passwords, and other sensitive credentials.
 
 ### no-changelog-comments
 
-Flags comments containing changelog-like terms such as "added", "updated", "fixed", "changed", etc., that often appear when AI tools explain their changes in comments.
+Flags comments containing changelog-like terms such as "added", "updated", "fixed", "changed", etc., that often appear when AI tools explain their changes in comments. This rule is fixable - the VSCode quick fix feature (lightbulb) or ESLint's `--fix` option will automatically remove these comments.
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Run tests to ensure they pass: `npm test`
+4. Commit your changes (`git commit -m 'Add some amazing feature'`)
+5. Push to the branch (`git push origin feature/amazing-feature`)
+6. Open a Pull Request
+
+## Release Process
+
+This project uses semantic-release for automated versioning and releases:
+
+1. When changes are merged to the `main` branch, semantic-release analyzes commit messages
+2. Version numbers are automatically determined based on semantic commit messages
+   - `fix:` - Patch release (1.0.0 -> 1.0.1)
+   - `feat:` - Minor release (1.0.0 -> 1.1.0)
+   - `feat!:`, `fix!:`, `refactor!:`, etc. - Major release (1.0.0 -> 2.0.0)
+3. CHANGELOG.md is automatically updated with release notes
+4. A GitHub release is created with the same notes
+5. The package is published to npm automatically
+
+To contribute changes that will be released:
+
+1. Make your changes following the [Conventional Commits](https://www.conventionalcommits.org/) specification
+2. Create a PR and merge it to the `main` branch
+3. The GitHub Actions workflow will handle releasing and publishing automatically
