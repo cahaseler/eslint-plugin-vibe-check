@@ -8,6 +8,11 @@ ESLint rules to provide warnings and guardrails for AI coding assistance
 npm install eslint-plugin-vibe-check --save-dev
 ```
 
+### Requirements
+
+- Node.js >=20.8.1
+- ESLint >=8.0.0
+
 ## Usage
 
 ### Traditional Config (`.eslintrc`)
