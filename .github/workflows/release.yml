@@ -34,8 +34,13 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Fix package.json
+        run: npm run pkg:fix
+
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # Force semantic-release to use tags for version detection
+          SEMANTIC_RELEASE_USE_TAGS: "true"
         run: npx semantic-release

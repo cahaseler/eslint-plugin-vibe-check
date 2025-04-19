@@ -22,7 +22,8 @@
     "test": "mocha tests/*.js",
     "lint": "eslint .",
     "example": "node examples/init.js",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "pkg:fix": "npm pkg fix"
   },
   "keywords": [
     "eslint",
@@ -38,7 +39,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cahaseler/eslint-plugin-vibe-check.git"
+    "url": "git+https://github.com/cahaseler/eslint-plugin-vibe-check.git"
   },
   "bugs": {
     "url": "https://github.com/cahaseler/eslint-plugin-vibe-check/issues"
