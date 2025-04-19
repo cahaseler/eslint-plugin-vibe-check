@@ -5,3 +5,10 @@ coverage/
 *.d.ts
 examples/typescript-example.ts
 examples/tsx-example.tsx
+# Ignore example files as they intentionally contain rule violations
+examples/
+# Ignore never-assume rule implementation since it contains "assumption" words for demonstration
+lib/rules/never-assume.js
+# Ignore temporary files used for testing
+tmp.js
+test-*.js
