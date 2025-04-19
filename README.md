@@ -35,11 +35,19 @@ Then configure the rules you want to use:
 }
 ```
 
-Or use the recommended configuration:
+Or use one of the provided configurations:
 
 ```json
 {
   "extends": ["plugin:vibe-check/recommended"]
+}
+```
+
+For stricter enforcement (all rules as errors):
+
+```json
+{
+  "extends": ["plugin:vibe-check/strict"]
 }
 ```
 
@@ -66,6 +74,17 @@ export default [
 ];
 ```
 
+For stricter enforcement (all rules as errors):
+
+```js
+import vibeCheckStrict from 'eslint-plugin-vibe-check/eslint.config.strict.js';
+
+export default [
+  // Your other configs...
+  vibeCheckStrict
+];
+```
+
 Or you can use the flat configuration directly:
 
 ```js
@@ -80,8 +99,24 @@ export default [
       'vibe-check/max-file-lines': 'warn',
       'vibe-check/no-placeholder-comments': 'warn',
       'vibe-check/no-hardcoded-credentials': 'warn',
-      'vibe-check/no-changelog-comments': 'warn'
+      'vibe-check/no-changelog-comments': 'warn',
+      'vibe-check/never-assume': 'error'
     }
+  }
+];
+```
+
+Or use one of the predefined configurations:
+
+```js
+import vibeCheckPlugin from 'eslint-plugin-vibe-check';
+
+export default [
+  {
+    plugins: {
+      'vibe-check': vibeCheckPlugin
+    },
+    extends: ['plugin:vibe-check/recommended'] // or 'plugin:vibe-check/strict'
   }
 ];
 ```
@@ -117,6 +152,10 @@ Detects hardcoded API keys, tokens, passwords, and other sensitive credentials.
 ### no-changelog-comments
 
 Flags comments containing changelog-like terms such as "added", "updated", "fixed", "changed", etc., that often appear when AI tools explain their changes in comments. This rule is fixable - the VSCode quick fix feature (lightbulb) or ESLint's `--fix` option will automatically remove these comments.
+
+### never-assume
+
+Detects comments containing forms of the word "assume" (such as "assume", "assuming", "assumed", etc.) and flags them as errors. Making assumptions about a codebase can lead to errors and bugs. Instead of making assumptions, developers should check and validate their understanding before making decisions.
 
 ## Contributing
 

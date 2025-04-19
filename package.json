@@ -8,12 +8,14 @@
       "import": "./lib/index.js",
       "require": "./lib/index.js"
     },
-    "./eslint.config.js": "./eslint.config.js"
+    "./eslint.config.js": "./eslint.config.js",
+    "./eslint.config.strict.js": "./eslint.config.strict.js"
   },
   "files": [
     "lib",
     "docs",
-    "eslint.config.js"
+    "eslint.config.js",
+    "eslint.config.strict.js"
   ],
   "publishConfig": {
     "access": "public"
