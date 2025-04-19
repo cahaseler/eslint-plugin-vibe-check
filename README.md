@@ -10,6 +10,8 @@ npm install eslint-plugin-vibe-check --save-dev
 
 ## Usage
 
+### Traditional Config (`.eslintrc`)
+
 Add `vibe-check` to the plugins section of your `.eslintrc` configuration file:
 
 ```json
@@ -34,6 +36,49 @@ Or use the recommended configuration:
 {
   "extends": ["plugin:vibe-check/recommended"]
 }
+```
+
+### Flat Config (`eslint.config.js`)
+
+For ESLint's new flat config format:
+
+```js
+import vibeCheck from 'eslint-plugin-vibe-check/eslint.config.js';
+
+export default [
+  // Your other configs...
+  vibeCheck,
+  
+  // Or configure individually:
+  {
+    plugins: {
+      'vibe-check': vibeCheck.plugins['vibe-check']
+    },
+    rules: {
+      'vibe-check/max-file-lines': ['warn', { max: 300 }]
+    }
+  }
+];
+```
+
+Or you can use the flat configuration directly:
+
+```js
+import vibeCheckPlugin from 'eslint-plugin-vibe-check';
+
+export default [
+  {
+    plugins: {
+      'vibe-check': vibeCheckPlugin
+    },
+    rules: {
+      'vibe-check/max-file-lines': 'warn',
+      'vibe-check/no-placeholder-comments': 'warn',
+      'vibe-check/no-hardcoded-credentials': 'warn',
+      'vibe-check/no-changelog-comments': 'warn'
+    }
+  }
+];
 ```
 
 ## Rules

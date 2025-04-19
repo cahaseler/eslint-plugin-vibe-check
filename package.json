@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "ESLint rules to provide warnings and guardrails for AI coding assistance",
   "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "require": "./lib/index.js"
+    },
+    "./eslint.config.js": "./eslint.config.js"
+  },
   "scripts": {
     "test": "mocha tests/*.js",
     "lint": "eslint .",
@@ -14,7 +20,9 @@
     "ai",
     "guardrails",
     "code quality",
-    "best practices"
+    "best practices",
+    "eslint-plugin",
+    "eslintconfig"
   ],
   "author": "cahaseler",
   "license": "MIT",
