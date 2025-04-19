@@ -11,6 +11,8 @@ Such comments are generally not appropriate for a production codebase, as they:
 
 This rule aims to identify and report comments that contain common changelog terms like "added", "updated", "fixed", etc.
 
+This rule is fixable using the `--fix` command line option or from within VSCode using the quick fix feature (lightbulb). The fix will remove the changelog comment entirely.
+
 Examples of **incorrect** code for this rule:
 
 ```js

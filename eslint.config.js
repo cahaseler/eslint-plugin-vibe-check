@@ -17,7 +17,50 @@ const rules = {
 /** @type {import('eslint').FlatConfig[]} */
 export default [
   {
-    files: ['**/*.js'],
+    ignores: [
+      'node_modules/**',
+      'dist/**',
+      'coverage/**',
+      'examples/typescript-example.ts',
+      'examples/tsx-example.tsx'
+    ]
+  },
+  // JavaScript files
+  {
+    files: ['**/*.js', '**/*.jsx'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true
+        }
+      }
+    },
+    plugins: {
+      'vibe-check': {
+        rules
+      }
+    },
+    rules: {
+      'vibe-check/max-file-lines': 'warn',
+      'vibe-check/no-placeholder-comments': 'warn',
+      'vibe-check/no-hardcoded-credentials': 'warn',
+      'vibe-check/no-changelog-comments': 'warn',
+    }
+  },
+  // TypeScript files - using same parser as JS for now (we'd need typescript-eslint for proper TS parsing)
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true
+        }
+      }
+    },
     plugins: {
       'vibe-check': {
         rules

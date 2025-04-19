@@ -1,28 +1,28 @@
 # Enforce maximum file length (max-file-lines)
 
-This rule is designed to warn when a file exceeds a configurable maximum number of lines. It's particularly useful for AI-assisted coding workflows, where files that become too large can be difficult to understand and maintain.
+This rule is designed to warn when a file exceeds a configurable maximum number of lines. It's particularly useful for AI-assisted coding workflows, where files that become too large can exceed AI context windows, making it difficult for AI tools to process the entire file. Additionally, large files are generally harder to understand and maintain.
 
 ## Rule Details
 
 This rule aims to keep code files at a reasonable size by enforcing a maximum line count.
 
-Examples of **incorrect** code for this rule with a `{ "max": 300 }` option:
+Examples of **incorrect** code for this rule with a `{ "max": 400 }` option:
 
 ```js
-// A file with more than 300 lines
+// A file with more than 400 lines
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-// A file with 300 or fewer lines
+// A file with 400 or fewer lines
 ```
 
 ## Options
 
 This rule has an object option:
 
-* `"max"`: (default 300) enforces a maximum number of lines per file
+* `"max"`: (default 400) enforces a maximum number of lines per file
 
 ### max
 

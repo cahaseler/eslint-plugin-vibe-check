@@ -1,0 +1,31 @@
+# <type>(<scope>): <summary>
+# |        |         |
+# |        |         +-> Summary in present tense (50 chars or less)
+# |        +------------> Optional scope: 'rule', 'docs', 'core', etc.
+# +--------------------> Type: feat, fix, docs, style, refactor, test, chore
+#
+# Examples:
+#   feat(rule): Add no-changelog-comments VSCode quickfix
+#   fix(max-file-lines): Correct line counting when files have whitespace
+#   docs: Update README with semantic-release instructions
+#
+# Types:
+#   feat     - A new feature (minor version bump)
+#   fix      - A bug fix (patch version bump)
+#   docs     - Documentation only changes
+#   style    - Changes that don't affect the meaning of the code
+#   refactor - Code change that neither fixes a bug nor adds a feature
+#   perf     - A code change that improves performance
+#   test     - Adding missing tests or correcting existing tests
+#   chore    - Changes to the build process or auxiliary tools
+#
+# Breaking Changes:
+# If this commit introduces a breaking change, add a ! after the type/scope
+# Example: feat(rule)!: Completely change rule API
+#
+# Body (optional):
+# - Separated from subject with blank line
+# - Explain problem and solution
+# - Include motivation if a breaking change
+
+# Describe the changes

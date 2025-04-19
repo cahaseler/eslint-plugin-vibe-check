@@ -1,0 +1,7 @@
+node_modules/
+dist/
+coverage/
+.github/
+*.d.ts
+examples/typescript-example.ts
+examples/tsx-example.tsx

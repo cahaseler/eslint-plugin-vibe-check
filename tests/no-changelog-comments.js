@@ -20,26 +20,32 @@ ruleTester.run('no-changelog-comments', rule, {
   invalid: [
     {
       code: '// Added error handling for edge cases',
+      output: '',
       errors: [{ messageId: 'changelogComment' }],
     },
     {
       code: '// Updated the validation logic',
+      output: '',
       errors: [{ messageId: 'changelogComment' }],
     },
     {
       code: '// Fixed the bug that was causing crashes',
+      output: '',
       errors: [{ messageId: 'changelogComment' }],
     },
     {
       code: '// Removed unused variables',
+      output: '',
       errors: [{ messageId: 'changelogComment' }],
     },
     {
       code: '// Ensured correct initialization',
+      output: '',
       errors: [{ messageId: 'changelogComment' }],
     },
     {
       code: '/* Changed how the data is processed */',
+      output: '',
       errors: [{ messageId: 'changelogComment' }],
     },
     {
@@ -47,14 +53,17 @@ ruleTester.run('no-changelog-comments', rule, {
         * Updated component to use hooks instead of classes
         * This improves performance significantly
         */`,
+      output: '',
       errors: [{ messageId: 'changelogComment' }],
     },
     {
       code: '// Refactored for better readability',
+      output: '',
       errors: [{ messageId: 'changelogComment' }],
     },
     {
       code: '// Improved performance by caching results',
+      output: '',
       errors: [{ messageId: 'changelogComment' }],
     },
   ],

@@ -1,6 +1,5 @@
 {
   "name": "eslint-plugin-vibe-check",
-  "version": "1.2.0",
   "description": "ESLint rules to provide warnings and guardrails for AI coding assistance",
   "main": "lib/index.js",
   "type": "module",
@@ -11,10 +10,19 @@
     },
     "./eslint.config.js": "./eslint.config.js"
   },
+  "files": [
+    "lib",
+    "docs",
+    "eslint.config.js"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "mocha tests/*.js",
     "lint": "eslint .",
-    "example": "node examples/init.js"
+    "example": "node examples/init.js",
+    "semantic-release": "semantic-release"
   },
   "keywords": [
     "eslint",
@@ -43,8 +51,15 @@
     "eslint": ">=8.0.0"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.1",
+    "@semantic-release/npm": "^12.0.1",
+    "@semantic-release/release-notes-generator": "^14.0.3",
     "eslint": "^8.56.0",
-    "mocha": "^10.8.2"
+    "mocha": "^10.8.2",
+    "semantic-release": "^24.2.3"
   },
   "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }
