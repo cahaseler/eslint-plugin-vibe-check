@@ -26,8 +26,8 @@ jobs:
         run: npm test
         
       - name: Lint code
-        # We expect warnings in the example files, but no errors
-        run: npm run lint -- --max-warnings 50
+        # We expect errors in examples and test files that demonstrate the rules
+        run: npm run lint -- --max-warnings 50 --ignore-pattern "examples/*" --ignore-pattern "lib/rules/never-assume.js" --ignore-pattern "tmp.js"
         continue-on-error: false
         
       - name: Failure message

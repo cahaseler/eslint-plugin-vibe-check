@@ -1,5 +1,5 @@
 /**
- * @fileoverview ESLint flat config for vibe-check
+ * @fileoverview ESLint flat config for vibe-check (strict mode)
  */
 
 import maxFileLines from './lib/rules/max-file-lines.js';
@@ -27,7 +27,7 @@ export default [
       'examples/tsx-example.tsx'
     ]
   },
-  // JavaScript files
+  // JavaScript files (strict mode)
   {
     files: ['**/*.js', '**/*.jsx'],
     languageOptions: {
@@ -45,14 +45,14 @@ export default [
       }
     },
     rules: {
-      'vibe-check/max-file-lines': 'warn',
-      'vibe-check/no-placeholder-comments': 'warn',
-      'vibe-check/no-hardcoded-credentials': 'warn',
-      'vibe-check/no-changelog-comments': 'warn',
+      'vibe-check/max-file-lines': 'error',
+      'vibe-check/no-placeholder-comments': 'error',
+      'vibe-check/no-hardcoded-credentials': 'error',
+      'vibe-check/no-changelog-comments': 'error',
       'vibe-check/never-assume': 'error',
     }
   },
-  // TypeScript files - using same parser as JS for now (we'd need typescript-eslint for proper TS parsing)
+  // TypeScript files (strict mode)
   {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
@@ -70,10 +70,10 @@ export default [
       }
     },
     rules: {
-      'vibe-check/max-file-lines': 'warn',
-      'vibe-check/no-placeholder-comments': 'warn',
-      'vibe-check/no-hardcoded-credentials': 'warn',
-      'vibe-check/no-changelog-comments': 'warn',
+      'vibe-check/max-file-lines': 'error',
+      'vibe-check/no-placeholder-comments': 'error',
+      'vibe-check/no-hardcoded-credentials': 'error',
+      'vibe-check/no-changelog-comments': 'error',
       'vibe-check/never-assume': 'error',
     }
   }
