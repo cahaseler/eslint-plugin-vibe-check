@@ -1,0 +1,6 @@
+{
+  "plugins": ["vibe-check"],
+  "rules": {
+    "vibe-check/max-file-lines": ["warn", { "max": 300 }]
+  }
+}
