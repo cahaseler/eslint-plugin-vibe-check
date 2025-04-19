@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/cahaseler/eslint-plugin-vibe-check/compare/v1.2.0...v1.2.1) (2025-04-19)
+
+
+### Bug Fixes
+
+* resolve semantic-release version conflict ([906d243](https://github.com/cahaseler/eslint-plugin-vibe-check/commit/906d243c63b6a56648c17ba35029e20ae2e03602))
+
 # [1.2.0](https://github.com/cahaseler/eslint-plugin-vibe-check/compare/v1.1.0...v1.2.0) (2025-04-19)
 
 
