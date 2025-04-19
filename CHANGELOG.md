@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/cahaseler/eslint-plugin-vibe-check/compare/v1.2.1...v1.3.0) (2025-04-19)
+
+
+### Features
+
+* add never-assume rule ([bfd3147](https://github.com/cahaseler/eslint-plugin-vibe-check/commit/bfd31475357e7da409edf691d0ca15fe48d89a6a))
+
 ## [1.2.1](https://github.com/cahaseler/eslint-plugin-vibe-check/compare/v1.2.0...v1.2.1) (2025-04-19)
 
 
