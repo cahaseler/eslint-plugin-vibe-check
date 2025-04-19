@@ -61,5 +61,6 @@
     "mocha": "^10.8.2",
     "semantic-release": "^24.2.3"
   },
-  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
+  "version": "1.2.0"
 }
