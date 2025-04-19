@@ -16,6 +16,15 @@ const rules = {
 
 /** @type {import('eslint').FlatConfig[]} */
 export default [
+  {
+    ignores: [
+      'node_modules/**',
+      'dist/**',
+      'coverage/**',
+      'examples/typescript-example.ts',
+      'examples/tsx-example.tsx'
+    ]
+  },
   // JavaScript files
   {
     files: ['**/*.js', '**/*.jsx'],
@@ -40,17 +49,12 @@ export default [
       'vibe-check/no-changelog-comments': 'warn',
     }
   },
-  // TypeScript files 
+  // TypeScript files - using same parser as JS for now (we'd need typescript-eslint for proper TS parsing)
   {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',
-      parser: {
-        name: 'espree',
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-      },
       parserOptions: {
         ecmaFeatures: {
           jsx: true

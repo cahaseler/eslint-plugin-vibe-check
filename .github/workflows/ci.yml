@@ -24,6 +24,16 @@ jobs:
         
       - name: Run tests
         run: npm test
-
+        
       - name: Lint code
-        run: npm run lint
+        # We expect warnings in the example files, but no errors
+        run: npm run lint -- --max-warnings 50
+        continue-on-error: false
+        
+      - name: Failure message
+        if: ${{ failure() }}
+        run: |
+          echo "CI build failed. Please check the logs for more information."
+          echo "Common issues:"
+          echo "- ESLint configuration errors"
+          echo "- Test failures"
