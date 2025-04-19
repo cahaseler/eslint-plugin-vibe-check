@@ -9,12 +9,18 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write      # to create releases and publish
+      issues: write        # to create issues
+      pull-requests: write # to comment on PRs
+      id-token: write      # for npm provenance
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          persist-credentials: false
+          # Use GITHUB_TOKEN with the proper permissions
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
