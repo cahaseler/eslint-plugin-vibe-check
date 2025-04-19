@@ -6,12 +6,14 @@ import maxFileLines from './lib/rules/max-file-lines.js';
 import noPlaceholderComments from './lib/rules/no-placeholder-comments.js';
 import noHardcodedCredentials from './lib/rules/no-hardcoded-credentials.js';
 import noChangelogComments from './lib/rules/no-changelog-comments.js';
+import neverAssume from './lib/rules/never-assume.js';
 
 const rules = {
   'max-file-lines': maxFileLines,
   'no-placeholder-comments': noPlaceholderComments,
   'no-hardcoded-credentials': noHardcodedCredentials,
   'no-changelog-comments': noChangelogComments,
+  'never-assume': neverAssume,
 };
 
 /** @type {import('eslint').FlatConfig[]} */
@@ -47,6 +49,7 @@ export default [
       'vibe-check/no-placeholder-comments': 'warn',
       'vibe-check/no-hardcoded-credentials': 'warn',
       'vibe-check/no-changelog-comments': 'warn',
+      'vibe-check/never-assume': 'error',
     }
   },
   // TypeScript files - using same parser as JS for now (we'd need typescript-eslint for proper TS parsing)
@@ -71,6 +74,7 @@ export default [
       'vibe-check/no-placeholder-comments': 'warn',
       'vibe-check/no-hardcoded-credentials': 'warn',
       'vibe-check/no-changelog-comments': 'warn',
+      'vibe-check/never-assume': 'error',
     }
   }
 ];
