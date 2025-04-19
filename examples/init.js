@@ -4,8 +4,8 @@
  * This script shows how to programmatically set up ESLint with the vibe-check plugin
  */
 
-const { ESLint } = require('eslint');
-const vibeCheckPlugin = require('../lib/index');
+import { ESLint } from 'eslint';
+import vibeCheckPlugin from '../lib/index.js';
 
 async function main() {
   // Create an instance of ESLint with the vibe-check plugin

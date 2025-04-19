@@ -1,7 +1,5 @@
-"use strict";
-
-const rule = require("../lib/rules/no-placeholder-comments");
-const { RuleTester } = require("eslint");
+import rule from "../lib/rules/no-placeholder-comments.js";
+import { RuleTester } from "eslint";
 
 const ruleTester = new RuleTester();
 

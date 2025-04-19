@@ -2,17 +2,20 @@
  * @fileoverview ESLint flat config for vibe-check
  */
 
-'use strict';
+import maxFileLines from './lib/rules/max-file-lines.js';
+import noPlaceholderComments from './lib/rules/no-placeholder-comments.js';
+import noHardcodedCredentials from './lib/rules/no-hardcoded-credentials.js';
+import noChangelogComments from './lib/rules/no-changelog-comments.js';
 
 const rules = {
-  'max-file-lines': require('./lib/rules/max-file-lines'),
-  'no-placeholder-comments': require('./lib/rules/no-placeholder-comments'),
-  'no-hardcoded-credentials': require('./lib/rules/no-hardcoded-credentials'),
-  'no-changelog-comments': require('./lib/rules/no-changelog-comments'),
+  'max-file-lines': maxFileLines,
+  'no-placeholder-comments': noPlaceholderComments,
+  'no-hardcoded-credentials': noHardcodedCredentials,
+  'no-changelog-comments': noChangelogComments,
 };
 
 /** @type {import('eslint').FlatConfig[]} */
-module.exports = [
+export default [
   {
     files: ['**/*.js'],
     plugins: {

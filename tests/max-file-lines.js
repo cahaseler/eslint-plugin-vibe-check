@@ -1,7 +1,5 @@
-'use strict';
-
-const rule = require('../lib/rules/max-file-lines');
-const { RuleTester } = require('eslint');
+import rule from '../lib/rules/max-file-lines.js';
+import { RuleTester } from 'eslint';
 
 const ruleTester = new RuleTester();
 

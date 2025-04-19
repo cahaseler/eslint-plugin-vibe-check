@@ -1,7 +1,5 @@
-'use strict';
-
-const rule = require('../lib/rules/no-changelog-comments');
-const RuleTester = require('eslint').RuleTester;
+import rule from '../lib/rules/no-changelog-comments.js';
+import { RuleTester } from 'eslint';
 
 const ruleTester = new RuleTester();
 

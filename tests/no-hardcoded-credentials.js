@@ -1,7 +1,5 @@
-"use strict";
-
-const rule = require("../lib/rules/no-hardcoded-credentials");
-const { RuleTester } = require("eslint");
+import rule from "../lib/rules/no-hardcoded-credentials.js";
+import { RuleTester } from "eslint";
 
 const ruleTester = new RuleTester({
   parserOptions: {
