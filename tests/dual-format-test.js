@@ -20,6 +20,17 @@ const getCjsPlugin = async () => {
   }
 };
 
+// Mock function for testing error handling
+const getCjsPluginWithError = async () => {
+  try {
+    // Intentionally import a non-existent file to test error handling
+    return await import('../lib/non-existent-file.cjs');
+  } catch (error) {
+    // Properly handle expected error by returning null, which we can assert against
+    return null;
+  }
+};
+
 describe('Dual plugin format support', async () => {
   let cjsPlugin;
 
@@ -60,5 +71,11 @@ describe('Dual plugin format support', async () => {
     // Check recommended configs
     assert.ok(cjsPluginObj.configs.recommended, 'recommended config should exist in CJS version');
     assert.ok(cjsPluginObj.configs.strict, 'strict config should exist in CJS version');
+  });
+  
+  it('Handles import errors gracefully', async () => {
+    // Test error handling with non-existent file
+    const result = await getCjsPluginWithError();
+    assert.equal(result, null, 'Should handle import errors gracefully');
   });
 });
