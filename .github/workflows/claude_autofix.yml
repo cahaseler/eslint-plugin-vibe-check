@@ -1,0 +1,157 @@
+name: Claude Autofix
+
+on:
+  issues:
+    types: [opened, labeled]
+
+jobs:
+  claude-autofix:
+    if: ${{ github.event.label.name == 'claude-fix' || contains(github.event.issue.labels.*.name, 'claude-fix') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: read
+      pull-requests: write
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Set up Git user
+        run: |
+          git config --global user.name "Claude Autofix"
+          git config --global user.email "noreply@anthropic.com"
+
+      - name: Create branch for fix
+        run: |
+          ISSUE_NUMBER="${{ github.event.issue.number }}"
+          BRANCH_NAME="fix/claude-autofix-issue-${ISSUE_NUMBER}"
+          git checkout -b $BRANCH_NAME
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+      - name: Prepare issue content for Claude
+        run: |
+          ISSUE_TITLE="${{ github.event.issue.title }}"
+          ISSUE_BODY="${{ github.event.issue.body }}"
+          
+          # Create prompt file with issue details
+          cat > claude_prompt.txt << EOF
+          I need you to fix the following issue in the eslint-plugin-vibe-check repository:
+          
+          # Issue: $ISSUE_TITLE
+          
+          $ISSUE_BODY
+          
+          Please analyze the code, make necessary changes, run tests to verify your solution, and prepare a concise PR description.
+          EOF
+          
+          echo "Prompt file created for Claude."
+
+      - name: Run Claude Code in headless mode
+        id: claude_code
+        env:
+          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+        run: |
+          # Install Anthropic CLI tool if needed (assuming it's available as a package)
+          npm install -g @anthropic-ai/cli
+          
+          # Run Claude Code with the prompt
+          # --headless: Run without interactive mode
+          # --diff: Generate and save a diff of changes
+          # --prompt-file: Use the prompt file we created
+          # --timeout: Set a reasonable timeout (20 minutes)
+          CLAUDE_OUTPUT=$(anthropic claude-code --headless --diff --prompt-file claude_prompt.txt --timeout 1200 --working-dir .)
+          
+          # Check if Claude was able to make changes
+          if [ $? -ne 0 ]; then
+            echo "Claude Code could not fix the issue. Exiting."
+            exit 1
+          fi
+          
+          # Save PR description from Claude's output
+          echo "$CLAUDE_OUTPUT" | grep -A 10 "PR Description:" > pr_description.txt
+          
+          echo "Claude Code completed successfully."
+
+      - name: Run tests to validate changes
+        id: run_tests
+        run: |
+          npm test
+          if [ $? -ne 0 ]; then
+            echo "Tests failed. Not proceeding with PR creation."
+            exit 1
+          fi
+          echo "Tests passed successfully."
+
+      - name: Lint code
+        id: run_lint
+        run: |
+          npm run lint -- --max-warnings 50 --ignore-pattern "examples/*" --ignore-pattern "lib/rules/never-assume.js" --ignore-pattern "tmp.js"
+          if [ $? -ne 0 ]; then
+            echo "Linting failed. Not proceeding with PR creation."
+            exit 1
+          fi
+          echo "Linting passed successfully."
+
+      - name: Commit changes
+        run: |
+          git add .
+          git commit -m "fix: Auto-fix issue #${{ github.event.issue.number }} using Claude Code
+          
+          🤖 Generated with Claude Code
+          
+          Co-Authored-By: Claude <noreply@anthropic.com>" || echo "No changes to commit"
+
+      - name: Push changes
+        run: |
+          git push origin ${{ env.BRANCH_NAME }}
+
+      - name: Create pull request
+        id: create_pr
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "fix: Auto-fix issue #${{ github.event.issue.number }} using Claude Code"
+          branch: ${{ env.BRANCH_NAME }}
+          delete-branch: false
+          title: "fix: Auto-fix issue #${{ github.event.issue.number }} - ${{ github.event.issue.title }}"
+          body-file: pr_description.txt
+          labels: "claude-autofix"
+          base: "main"
+
+      - name: Comment on issue
+        if: steps.create_pr.outputs.pull-request-number
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Hi there! This issue has been automatically addressed by Claude Code.
+            
+            A pull request has been created at #${{ steps.create_pr.outputs.pull-request-number }} with the proposed fix.
+            
+            Please review the changes and provide feedback or merge the PR if it resolves the issue.
+            
+            🤖 This was generated automatically by the Claude Autofix workflow.
+
+      - name: Handle failure
+        if: failure()
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Unfortunately, Claude was unable to automatically fix this issue. The GitHub Action ran into an error.
+            
+            You may need to manually address this issue, or refine the issue description and try again.
+            
+            🤖 This was generated automatically by the Claude Autofix workflow.

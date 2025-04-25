@@ -172,6 +172,17 @@ Detects comments containing forms of the word "assume" (such as "assume", "assum
 5. Push to the branch (`git push origin feature/amazing-feature`)
 6. Open a Pull Request
 
+### Using Claude Autofix
+
+You can also request Claude to automatically fix issues:
+
+1. Create a new issue describing the bug or enhancement
+2. Add the `claude-fix` label to the issue
+3. The Claude Autofix workflow will attempt to fix the issue automatically
+4. If successful, a new pull request will be created with the fix
+
+For more details, see the [Claude Autofix documentation](./autofix/README.md).
+
 ## Release Process
 
 This project uses semantic-release for automated versioning and releases:
