@@ -1,3 +1,11 @@
+## [1.3.1](https://github.com/cahaseler/eslint-plugin-vibe-check/compare/v1.3.0...v1.3.1) (2025-04-25)
+
+
+### Bug Fixes
+
+* add support for legacy ESLint plugin format ([45b00e8](https://github.com/cahaseler/eslint-plugin-vibe-check/commit/45b00e8228eab263c1181f35d477f7a3e0454bd5))
+* enhance JSX comment fixer and add error handling tests ([b332849](https://github.com/cahaseler/eslint-plugin-vibe-check/commit/b33284941200484b1150d4b4a83b9d683a785ade))
+
 # [1.3.0](https://github.com/cahaseler/eslint-plugin-vibe-check/compare/v1.2.1...v1.3.0) (2025-04-19)
 
 
