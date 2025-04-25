@@ -13,6 +13,12 @@ npm install eslint-plugin-vibe-check --save-dev
 - Node.js >=20.8.1
 - ESLint >=8.0.0
 
+### Compatibility
+
+This plugin supports both:
+- **ESLint Flat Config** (modern format using `eslint.config.js`)
+- **Legacy ESLint Config** (traditional format using `.eslintrc.*` files)
+
 ## Usage
 
 ### Traditional Config (`.eslintrc`)

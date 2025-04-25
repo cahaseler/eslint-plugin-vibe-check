@@ -1,12 +1,13 @@
 {
   "name": "eslint-plugin-vibe-check",
   "description": "ESLint rules to provide warnings and guardrails for AI coding assistance",
-  "main": "lib/index.js",
+  "main": "lib/index.cjs",
+  "module": "lib/index.js",
   "type": "module",
   "exports": {
     ".": {
       "import": "./lib/index.js",
-      "require": "./lib/index.js"
+      "require": "./lib/index.cjs"
     },
     "./eslint.config.js": "./eslint.config.js",
     "./eslint.config.strict.js": "./eslint.config.strict.js"
