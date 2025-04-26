@@ -69,6 +69,7 @@ jobs:
 
       - name: Run Claude Code in non-interactive mode
         id: claude_code
+        timeout-minutes: 15
         env:
           ANTHROPIC_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
         run: |
@@ -80,6 +81,8 @@ jobs:
           #!/bin/bash
           set -euo pipefail
           
+          # Add timeout to ensure Claude doesn't run indefinitely (10 minutes)
+          timeout 600s bash -c '
           # Run Claude Code with the prompt in non-interactive mode
           # -p (--print): Run query and exit immediately
           # --verbose: Show detailed logging
@@ -89,7 +92,20 @@ jobs:
             --json)
           
           # Extract PR description from Claude's output
-          echo "$CLAUDE_OUTPUT" | jq -r '.response' | grep -A 10 "PR Description:" > pr_description.txt
+          echo "$CLAUDE_OUTPUT" | jq -r ".response" | grep -A 10 "PR Description:" > pr_description.txt
+          '
+          
+          # Check if timeout occurred
+          if [ $? -eq 124 ]; then
+            echo "Claude Code execution timed out after 10 minutes."
+            exit 1
+          fi
+          
+          # Check if PR description was created
+          if [ ! -s pr_description.txt ]; then
+            echo "Claude Code did not generate a proper PR description."
+            exit 1
+          fi
           
           echo "Claude Code completed successfully."
           exit 0
@@ -98,7 +114,8 @@ jobs:
           # Make the script executable
           chmod +x run_claude.sh
           
-          # Run the script
+          # Run the script with progress indicator
+          echo "Starting Claude Code execution (this may take several minutes)..."
           ./run_claude.sh
           
           # Check if Claude was able to make changes
