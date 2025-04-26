@@ -1,3 +1,11 @@
+## [1.4.2](https://github.com/cahaseler/eslint-plugin-vibe-check/compare/v1.4.1...v1.4.2) (2025-04-26)
+
+
+### Bug Fixes
+
+* Correct CLI command name to 'claude' ([7485e9c](https://github.com/cahaseler/eslint-plugin-vibe-check/commit/7485e9cce8af2da6bc13bb252ccbf0e52f586c4f))
+* Use correct npm package and CLI command name ([533a22b](https://github.com/cahaseler/eslint-plugin-vibe-check/commit/533a22b833331817ddd68fbeced6081522e63ed9))
+
 ## [1.4.1](https://github.com/cahaseler/eslint-plugin-vibe-check/compare/v1.4.0...v1.4.1) (2025-04-26)
 
 
