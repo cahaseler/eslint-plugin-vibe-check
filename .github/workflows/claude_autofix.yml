@@ -84,7 +84,7 @@ jobs:
           # -p (--print): Run query and exit immediately
           # --verbose: Show detailed logging
           # --allowedTools: Specify permitted tools to use
-          CLAUDE_OUTPUT=$(claude -p --prompt-file claude_prompt.txt --verbose \
+          CLAUDE_OUTPUT=$(cat claude_prompt.txt | claude -p --verbose \
             --allowedTools "Bash(git diff:*)" "Bash(git log:*)" "Bash(npm:*)" "Edit" "Read" "Glob" "Grep" \
             --json)
           
