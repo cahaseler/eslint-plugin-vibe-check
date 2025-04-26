@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/cahaseler/eslint-plugin-vibe-check/compare/v1.4.2...v1.4.3) (2025-04-26)
+
+
+### Bug Fixes
+
+* correct Claude CLI usage in autofix workflow ([e05fe7e](https://github.com/cahaseler/eslint-plugin-vibe-check/commit/e05fe7e3e7fd631abb49a6404f8bf54baae9b448))
+
 ## [1.4.2](https://github.com/cahaseler/eslint-plugin-vibe-check/compare/v1.4.1...v1.4.2) (2025-04-26)
 
 
