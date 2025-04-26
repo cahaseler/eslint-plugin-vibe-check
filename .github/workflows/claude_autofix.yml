@@ -69,7 +69,7 @@ jobs:
 
       - name: Run Claude Code in non-interactive mode
         id: claude_code
-        timeout-minutes: 15
+        timeout-minutes: 30
         env:
           ANTHROPIC_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
         run: |
@@ -81,8 +81,8 @@ jobs:
           #!/bin/bash
           set -euo pipefail
           
-          # Add timeout to ensure Claude doesn't run indefinitely (10 minutes)
-          timeout 600s bash -c '
+          # Add timeout to ensure Claude doesn't run indefinitely (25 minutes)
+          timeout 1500s bash -c '
           # Run Claude Code with the prompt in non-interactive mode
           # -p (--print): Run query and exit immediately
           # --verbose: Show detailed logging
@@ -112,7 +112,7 @@ jobs:
           
           # Check if timeout occurred
           if [ $? -eq 124 ]; then
-            echo "Claude Code execution timed out after 10 minutes."
+            echo "Claude Code execution timed out after 25 minutes."
             exit 1
           fi
           
