@@ -1,3 +1,16 @@
+# [1.4.0](https://github.com/cahaseler/eslint-plugin-vibe-check/compare/v1.3.1...v1.4.0) (2025-04-26)
+
+
+### Bug Fixes
+
+* remove incorrect yarn package manager entry and update package-lock.json ([4dbb193](https://github.com/cahaseler/eslint-plugin-vibe-check/commit/4dbb193341c75bd4ef4499ca6939333238c008e2))
+* Update Claude autofix workflow to use official non-interactive mode ([35eac7d](https://github.com/cahaseler/eslint-plugin-vibe-check/commit/35eac7de5392327763b3e968f6836abae9f46de8))
+
+
+### Features
+
+* add Claude Autofix GitHub Action ([47834c2](https://github.com/cahaseler/eslint-plugin-vibe-check/commit/47834c2596676db010ce6d56cf224ebe8ddfdb9f))
+
 ## [1.3.1](https://github.com/cahaseler/eslint-plugin-vibe-check/compare/v1.3.0...v1.3.1) (2025-04-25)
 
 
