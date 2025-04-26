@@ -58,20 +58,19 @@ jobs:
           
           echo "Prompt file created for Claude."
 
-      - name: Run Claude Code in headless mode
+      - name: Run Claude Code in non-interactive mode
         id: claude_code
         env:
-          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
         run: |
-          # Install Anthropic CLI tool if needed (assuming it's available as a package)
-          npm install -g @anthropic-ai/cli
+          # Install Anthropic CLI tool
+          npm install -g @anthropic/claude-cli
           
-          # Run Claude Code with the prompt
-          # --headless: Run without interactive mode
-          # --diff: Generate and save a diff of changes
-          # --prompt-file: Use the prompt file we created
-          # --timeout: Set a reasonable timeout (20 minutes)
-          CLAUDE_OUTPUT=$(anthropic claude-code --headless --diff --prompt-file claude_prompt.txt --timeout 1200 --working-dir .)
+          # Run Claude Code with the prompt in non-interactive mode
+          # -p (--print): Run query and exit immediately
+          # --verbose: Show detailed logging
+          # --allowedTools: Specify permitted tools to use
+          CLAUDE_OUTPUT=$(claude -p --prompt-file claude_prompt.txt --verbose --allowedTools "Bash(git diff:*)" "Bash(git log:*)" "Bash(npm:*)" "Edit" "Read" "Glob" "Grep" --json)
           
           # Check if Claude was able to make changes
           if [ $? -ne 0 ]; then
@@ -79,8 +78,8 @@ jobs:
             exit 1
           fi
           
-          # Save PR description from Claude's output
-          echo "$CLAUDE_OUTPUT" | grep -A 10 "PR Description:" > pr_description.txt
+          # Extract PR description from Claude's output
+          echo "$CLAUDE_OUTPUT" | jq -r '.response' | grep -A 10 "PR Description:" > pr_description.txt
           
           echo "Claude Code completed successfully."
 
