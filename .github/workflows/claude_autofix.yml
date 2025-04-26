@@ -42,16 +42,25 @@ jobs:
 
       - name: Prepare issue content for Claude
         run: |
-          ISSUE_TITLE="${{ github.event.issue.title }}"
-          ISSUE_BODY="${{ github.event.issue.body }}"
+          # Extract issue details safely to separate files
+          echo "${{ github.event.issue.title }}" > issue_title.txt
+          echo "${{ github.event.issue.body }}" > issue_body.txt
           
-          # Create prompt file with issue details
-          cat > claude_prompt.txt << EOF
+          # Create prompt file with issue details using safer file-based approach
+          cat > claude_prompt.txt << 'EOF'
           I need you to fix the following issue in the eslint-plugin-vibe-check repository:
           
-          # Issue: $ISSUE_TITLE
+          # Issue: 
+          EOF
           
-          $ISSUE_BODY
+          # Append title and body from files instead of directly
+          cat issue_title.txt >> claude_prompt.txt
+          echo "" >> claude_prompt.txt
+          echo "" >> claude_prompt.txt
+          cat issue_body.txt >> claude_prompt.txt
+          
+          # Add additional instructions
+          cat >> claude_prompt.txt << 'EOF'
           
           Please analyze the code, make necessary changes, run tests to verify your solution, and prepare a concise PR description.
           EOF
@@ -66,22 +75,37 @@ jobs:
           # Install Anthropic CLI tool
           npm install -g @anthropic/claude-cli
           
+          # Create a script to safely handle the Claude prompt
+          cat > run_claude.sh << 'EOF'
+          #!/bin/bash
+          set -euo pipefail
+          
           # Run Claude Code with the prompt in non-interactive mode
           # -p (--print): Run query and exit immediately
           # --verbose: Show detailed logging
           # --allowedTools: Specify permitted tools to use
-          CLAUDE_OUTPUT=$(claude -p --prompt-file claude_prompt.txt --verbose --allowedTools "Bash(git diff:*)" "Bash(git log:*)" "Bash(npm:*)" "Edit" "Read" "Glob" "Grep" --json)
+          CLAUDE_OUTPUT=$(claude -p --prompt-file claude_prompt.txt --verbose \
+            --allowedTools "Bash(git diff:*)" "Bash(git log:*)" "Bash(npm:*)" "Edit" "Read" "Glob" "Grep" \
+            --json)
+          
+          # Extract PR description from Claude's output
+          echo "$CLAUDE_OUTPUT" | jq -r '.response' | grep -A 10 "PR Description:" > pr_description.txt
+          
+          echo "Claude Code completed successfully."
+          exit 0
+          EOF
+          
+          # Make the script executable
+          chmod +x run_claude.sh
+          
+          # Run the script
+          ./run_claude.sh
           
           # Check if Claude was able to make changes
           if [ $? -ne 0 ]; then
             echo "Claude Code could not fix the issue. Exiting."
             exit 1
           fi
-          
-          # Extract PR description from Claude's output
-          echo "$CLAUDE_OUTPUT" | jq -r '.response' | grep -A 10 "PR Description:" > pr_description.txt
-          
-          echo "Claude Code completed successfully."
 
       - name: Run tests to validate changes
         id: run_tests
