@@ -73,7 +73,7 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
         run: |
           # Install Anthropic CLI tool
-          npm install -g @anthropic/claude-cli
+          npm install -g @anthropic-ai/claude-code
           
           # Create a script to safely handle the Claude prompt
           cat > run_claude.sh << 'EOF'
