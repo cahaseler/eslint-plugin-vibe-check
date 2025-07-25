@@ -17,6 +17,13 @@ ruleTester.run('no-backward-compatibility-comments', rule, {
     '// This handles general compatibility between systems',
     '// Support for modern browsers only',
     '// No backward or forward compatibility needed',
+    // Test cases to ensure we don't get false positives 
+    '// backwardcompatibility without separators',
+    '// legacysupport without separators',
+    '// just backward',
+    '// just compatibility',
+    '// just legacy',
+    '// just support',
     `/**
       * This function processes data efficiently
       * @param {Object} data - The data to process
@@ -98,6 +105,19 @@ ruleTester.run('no-backward-compatibility-comments', rule, {
     },
     {
       code: '// backwards_compatibility layer',
+      errors: [{ messageId: 'backwardCompatibilityComment' }],
+    },
+    // Additional edge cases to test improved regex
+    {
+      code: '// legacy-support_module implementation',
+      errors: [{ messageId: 'backwardCompatibilityComment' }],
+    },
+    {
+      code: '// backward-compatibility.check() method',
+      errors: [{ messageId: 'backwardCompatibilityComment' }],
+    },
+    {
+      code: 'function foo() { /* legacy_support-wrapper */ }',
       errors: [{ messageId: 'backwardCompatibilityComment' }],
     },
   ],
