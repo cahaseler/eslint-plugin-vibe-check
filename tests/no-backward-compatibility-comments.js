@@ -14,6 +14,9 @@ ruleTester.run('no-backward-compatibility-comments', rule, {
     '// Updated to use the new architecture',
     '// Supports modern browsers only',
     '// Migration from old system is complete',
+    '// This handles general compatibility between systems',
+    '// Support for modern browsers only',
+    '// No backward or forward compatibility needed',
     `/**
       * This function processes data efficiently
       * @param {Object} data - The data to process
@@ -79,6 +82,22 @@ ruleTester.run('no-backward-compatibility-comments', rule, {
     },
     {
       code: '// Keep old method for compatibility with legacy systems',
+      errors: [{ messageId: 'backwardCompatibilityComment' }],
+    },
+    {
+      code: '// legacy-support module for old browsers',
+      errors: [{ messageId: 'backwardCompatibilityComment' }],
+    },
+    {
+      code: '// legacy_support function',
+      errors: [{ messageId: 'backwardCompatibilityComment' }],
+    },
+    {
+      code: '// backward-compatibility concerns',
+      errors: [{ messageId: 'backwardCompatibilityComment' }],
+    },
+    {
+      code: '// backwards_compatibility layer',
       errors: [{ messageId: 'backwardCompatibilityComment' }],
     },
   ],
