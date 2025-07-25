@@ -162,7 +162,7 @@ Flags comments containing changelog-like terms such as "added", "updated", "fixe
 
 ### no-backward-compatibility-comments
 
-Flags comments containing backward compatibility language such as "for backward compatibility", "legacy support", "legacy code", etc. These comments often indicate incomplete migrations or unnecessary legacy code left by AI assistants. This rule is fixable and will automatically remove these comments with `--fix`.
+Flags comments containing backward compatibility language such as "for backward compatibility", "legacy support", "legacy code", etc. These comments often indicate incomplete migrations or unnecessary legacy code left by AI assistants that should be reviewed and potentially removed.
 
 ### never-assume
 

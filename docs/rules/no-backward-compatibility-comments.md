@@ -12,7 +12,7 @@ Such comments are generally problematic because they:
 
 This rule aims to identify and report comments that contain common backward compatibility terms like "backward compatibility", "legacy support", "legacy code", etc.
 
-This rule is fixable using the `--fix` command line option or from within VSCode using the quick fix feature (lightbulb). The fix will remove the backward compatibility comment entirely.
+The rule provides warnings to help developers identify areas where legacy code or incomplete migrations may exist, allowing them to make informed decisions about whether to complete the migration or remove unnecessary legacy code.
 
 Examples of **incorrect** code for this rule:
 

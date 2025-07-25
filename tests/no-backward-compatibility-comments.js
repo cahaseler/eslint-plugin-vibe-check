@@ -24,52 +24,42 @@ ruleTester.run('no-backward-compatibility-comments', rule, {
   invalid: [
     {
       code: '// Added for backward compatibility',
-      output: '',
       errors: [{ messageId: 'backwardCompatibilityComment' }],
     },
     {
       code: '// Keep this for backwards compatibility',
-      output: '',
       errors: [{ messageId: 'backwardCompatibilityComment' }],
     },
     {
       code: '// This maintains compatibility with older versions',
-      output: '',
       errors: [{ messageId: 'backwardCompatibilityComment' }],
     },
     {
       code: '// Legacy support for IE11',
-      output: '',
       errors: [{ messageId: 'backwardCompatibilityComment' }],
     },
     {
       code: '// Legacy code - don\'t remove',
-      output: '',
       errors: [{ messageId: 'backwardCompatibilityComment' }],
     },
     {
       code: '/* Added to support old version of the API */',
-      output: '',
       errors: [{ messageId: 'backwardCompatibilityComment' }],
     },
     {
       code: '// Keep for compatibility with v1.0',
-      output: '',
       errors: [{ messageId: 'backwardCompatibilityComment' }],
     },
     {
       code: '// Support older browsers',
-      output: '',
       errors: [{ messageId: 'backwardCompatibilityComment' }],
     },
     {
       code: '// Deprecation support until v3.0',
-      output: '',
       errors: [{ messageId: 'backwardCompatibilityComment' }],
     },
     {
       code: '/* Migration compatibility layer */',
-      output: '',
       errors: [{ messageId: 'backwardCompatibilityComment' }],
     },
     {
@@ -77,22 +67,18 @@ ruleTester.run('no-backward-compatibility-comments', rule, {
         * This function supports legacy compatibility
         * Will be removed in future versions
         */`,
-      output: '',
       errors: [{ messageId: 'backwardCompatibilityComment' }],
     },
     {
       code: '// For backward compatibility with React 16',
-      output: '',
       errors: [{ messageId: 'backwardCompatibilityComment' }],
     },
     {
       code: '// BACKWARD COMPATIBILITY: Keep this method',
-      output: '',
       errors: [{ messageId: 'backwardCompatibilityComment' }],
     },
     {
       code: '// Keep old method for compatibility with legacy systems',
-      output: '',
       errors: [{ messageId: 'backwardCompatibilityComment' }],
     },
   ],
