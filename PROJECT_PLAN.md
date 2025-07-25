@@ -11,6 +11,9 @@
   - `max-file-lines`: Warns when a file exceeds a configurable line count
   - `no-placeholder-comments`: Catches placeholder comments indicating shortcuts or unimplemented features
   - `no-hardcoded-credentials`: Detects hardcoded API keys, tokens, and other sensitive credentials
+  - `no-changelog-comments`: Flags comments containing changelog-like terms that often appear when AI tools explain their changes
+  - `no-backward-compatibility-comments`: Flags comments indicating incomplete migrations or unnecessary legacy code
+  - `never-assume`: Detects comments containing assumptions about the codebase
 - Documentation, tests, and examples for existing rules
 - NPM scripts for testing and linting
 
