@@ -106,6 +106,7 @@ export default [
       'vibe-check/no-placeholder-comments': 'warn',
       'vibe-check/no-hardcoded-credentials': 'warn',
       'vibe-check/no-changelog-comments': 'warn',
+      'vibe-check/no-backward-compatibility-comments': 'warn',
       'vibe-check/never-assume': 'error'
     }
   }
@@ -158,6 +159,10 @@ Detects hardcoded API keys, tokens, passwords, and other sensitive credentials.
 ### no-changelog-comments
 
 Flags comments containing changelog-like terms such as "added", "updated", "fixed", "changed", etc., that often appear when AI tools explain their changes in comments. This rule is fixable - the VSCode quick fix feature (lightbulb) or ESLint's `--fix` option will automatically remove these comments.
+
+### no-backward-compatibility-comments
+
+Flags comments containing backward compatibility language such as "for backward compatibility", "legacy support", "legacy code", etc. These comments often indicate incomplete migrations or unnecessary legacy code left by AI assistants. This rule is fixable and will automatically remove these comments with `--fix`.
 
 ### never-assume
 
