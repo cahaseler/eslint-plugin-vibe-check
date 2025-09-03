@@ -24,16 +24,6 @@ ruleTester.run("no-import-export", rule, {
     // Direct re-exports (this is actually a legitimate pattern)
     "export { foo } from './module';",
     "export * from './module';",
-    
-    // Import used in code and also exported (legitimate)
-    `import { foo } from './module';
-     console.log(foo);
-     export { foo };`,
-    
-    // Import with different local name, export with original name - used in code
-    `import { foo as localFoo } from './module';
-     console.log(localFoo);
-     export { localFoo as foo };`,
      
     // Namespace import used properly
     `import * as utils from './utils';
@@ -89,6 +79,19 @@ ruleTester.run("no-import-export", rule, {
         {
           messageId: "importExport",
           data: { name: "bar", source: "./module" }
+        }
+      ]
+    },
+    
+    // Import with different local name, export with original name - should be flagged
+    {
+      code: `import { foo as localFoo } from './module';
+             console.log(localFoo);
+             export { localFoo as foo };`,
+      errors: [
+        {
+          messageId: "importExport",
+          data: { name: "foo", source: "./module" }
         }
       ]
     },
@@ -153,6 +156,19 @@ ruleTester.run("no-import-export", rule, {
         {
           messageId: "importExport",
           data: { name: "bar", source: "./module" }
+        }
+      ]
+    },
+
+    // Import used in code and also exported - should still be flagged  
+    {
+      code: `import { foo } from './module';
+             console.log(foo);
+             export { foo };`,
+      errors: [
+        {
+          messageId: "importExport", 
+          data: { name: "foo", source: "./module" }
         }
       ]
     },
