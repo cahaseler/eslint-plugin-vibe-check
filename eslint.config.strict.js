@@ -8,6 +8,7 @@ import noHardcodedCredentials from './lib/rules/no-hardcoded-credentials.js';
 import noChangelogComments from './lib/rules/no-changelog-comments.js';
 import noBackwardCompatibilityComments from './lib/rules/no-backward-compatibility-comments.js';
 import neverAssume from './lib/rules/never-assume.js';
+import noImportExport from './lib/rules/no-import-export.js';
 
 const rules = {
   'max-file-lines': maxFileLines,
@@ -16,6 +17,7 @@ const rules = {
   'no-changelog-comments': noChangelogComments,
   'no-backward-compatibility-comments': noBackwardCompatibilityComments,
   'never-assume': neverAssume,
+  'no-import-export': noImportExport,
 };
 
 /** @type {import('eslint').FlatConfig[]} */
@@ -53,6 +55,7 @@ export default [
       'vibe-check/no-changelog-comments': 'error',
       'vibe-check/no-backward-compatibility-comments': 'error',
       'vibe-check/never-assume': 'error',
+      'vibe-check/no-import-export': 'error',
     }
   },
   // TypeScript files (strict mode)
@@ -79,6 +82,7 @@ export default [
       'vibe-check/no-changelog-comments': 'error',
       'vibe-check/no-backward-compatibility-comments': 'error',
       'vibe-check/never-assume': 'error',
+      'vibe-check/no-import-export': 'error',
     }
   }
 ];
